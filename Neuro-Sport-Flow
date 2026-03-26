@@ -1,4 +1,4 @@
-# NeuroSport-Flow
+# Neuro Sport-Flow
 Enhancing EEG Preprocessing for Athlete Focus Analysis using MNE-Python.
 Optimizing Motion Artifact Suppression: Developing automated pipelines to isolate EMG interference from EEG signals during high-intensity athletic movements.
 Quantifying the 'Flow State': Establishing a robust 'Focus Index' based on \theta/\alpha power ratios to monitor cognitive engagement in real-time.
