@@ -1,48 +1,33 @@
-import cv2
-import mediapipe as mp
-import mne
-import numpy as np
+# Neuro Sport Flow
 
-# 1. إعداد MediaPipe لتحليل الحركة (Gait Analysis)
-mp_pose = mp.solutions.pose
-pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=0.5)
+## Project Description
+Neuro Sport Flow is an innovative application designed to enhance sports performance through neurofeedback and advanced training techniques. This project aims to assist athletes in optimizing their training sessions and improving their mental focus and resilience.
 
-# 2. وظيفة افتراضية لمحاكاة معالجة بيانات EEG باستخدام MNE
-def process_eeg_focus(data_path):
-    # محاكاة قراءة بيانات EEG وتحليل نطاق "بيتا" المسؤول عن التركيز
-    # في المشروع الحقيقي سنستخدم ملفات .edf أو .fif
-    print("Processing Brain Signals for Focus Analysis...")
-    # مثال بسيط لفلترة الإشارات باستخدام MNE
-    # raw = mne.io.read_raw_edf(data_path)
-    # raw.filter(12, 30) # Beta band for focus
-    return "Focus Level: High (85%)"
+## Features
+- **Real-time Neurofeedback**: Users can monitor brain activity to make adjustments during training.
+- **Performance Tracking**: Keep track of training sessions and progress over time.
+- **Customizable Workouts**: Tailor workouts to fit individual needs and preferences.
+- **Data Visualization**: Visual graphs showing performance trends and areas for improvement.
 
-# 3. تشغيل الكاميرا وتحليل الحركة في الوقت الفعلي
-cap = cv2.VideoCapture(0)
+## Installation Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/oneg8352-hash/Neuro-Sport-Flow.git
+   ```
+2. Navigate into the cloned directory:
+   ```bash
+   cd Neuro-Sport-Flow
+   ```
+3. Install the required dependencies:
+   ```bash
+   npm install
+   ```
 
-print("Starting Neuro-Sport-Flow Analysis...")
+## Usage Guide
+To start the application, run the following command:
+```bash
+npm start
+```
+Then follow the on-screen instructions to set up your training parameters and get started! 
 
-while cap.isOpened():
-    success, image = cap.read()
-    if not success: break
-
-    # تحويل الصورة لـ RGB لـ MediaPipe
-    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    results = pose.process(image_rgb)
-
-    # رسم نقاط الجسم وحساب الزوايا الحركية
-    if results.pose_landmarks:
-        # هنا يتم استخراج الـ 33 نقطة للجسم
-        # مثال: نقطة الركبة (Knee) ونقطة الحوض (Hip)
-        mp.solutions.drawing_utils.draw_landmarks(
-            image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
-        
-        # إضافة نص توضيحي على الشاشة يحاكي دمج الـ EEG
-        cv2.putText(image, "Neuro-Status: Active Focus", (10, 50), 
-                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-
-    cv2.imshow('Neuro-Sport-Flow Prototype', image)
-    if cv2.waitKey(5) & 0xFF == 27: break
-
-cap.release()
-cv2.destroyAllWindows()
+For further information and advanced settings, please refer to the documentation section of the application.
